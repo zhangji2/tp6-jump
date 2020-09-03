@@ -39,7 +39,7 @@ class Index
         //return $this->error('error');
         //return $this->success('success','index/index');
         //return $this->redirect('/admin/index/index');
-        return $this->result(['username' => 'liliuwei', 'sex' => '男']);
+        return $this->result(['username' => 'zhangji2', 'sex' => '男']);
     }
 }
 ~~~
@@ -215,9 +215,9 @@ class Index extends \app\BaseController
          * @param  array $header 发送的Header信息
          */
         //一般用法
-        return $this->result(['username' => 'liliuwei', 'sex' => '男']);
+        return $this->result(['username' => 'zhangji2', 'sex' => '男']);
         //完整用法
-        //return $this->result($data=['username' => 'liliuwei', 'sex' => '男'], $code = 0, $msg = '', $type = '',  $header = []); 
+        //return $this->result($data=['username' => 'zhangji2', 'sex' => '男'], $code = 0, $msg = '', $type = '',  $header = []); 
     }
 }
 ~~~
