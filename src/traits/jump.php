@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * 用法：
+ * class index
+ * {
+ *     use \zhangji2\think\traits\Jump;
+ *     public function index(){
+ *         $this->error();
+ *         $this->redirect();
+ *     }
+ * }
+ */
 declare(strict_types=1);
 
 namespace zhangji2\think\traits;
@@ -67,7 +77,7 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-
+        return view($template, $result);
         throw new HttpResponseException($response);
     }
 
@@ -105,7 +115,7 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-
+        return view($template, $result);
         throw new HttpResponseException($response);
     }
 
