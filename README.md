@@ -4,7 +4,7 @@
 
 ## 参考
 ~~~url
-https://github.com/zhangji2/thinkphp-jump
+https://github.com/liliuwei/thinkphp-jump
 ~~~
 
 ## 安装
