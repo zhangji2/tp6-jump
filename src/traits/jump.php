@@ -77,7 +77,7 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-        return view($template, $result);
+
         throw new HttpResponseException($response);
     }
 
@@ -115,7 +115,7 @@ trait Jump
         } else {
             $response = Response::create($result, $type)->header($header);
         }
-        return view($template, $result);
+
         throw new HttpResponseException($response);
     }
 
