@@ -17,8 +17,8 @@ composer require zhangji2/tp6-jump
 // 安装之后会在config目录里生成jump.php配置文件
 return[
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl' => app()->getRootPath().'/vendor/zhangji2/tp6-jump/src/view/jump.html',
-    'dispatch_error_tmpl'   => app()->getRootPath().'/vendor/zhangji2/tp6-jump/src/view/jump.html',
+    'dispatch_success_tmpl' => app()->getRootPath().'vendor/zhangji2/tp6-jump/src/view/jump.html',
+    'dispatch_error_tmpl'   => app()->getRootPath().'vendor/zhangji2/tp6-jump/src/view/jump.html',
 ];
 ~~~
 
