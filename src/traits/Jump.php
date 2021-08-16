@@ -17,6 +17,7 @@ namespace zhangji2\think\traits;
 use think\exception\HttpResponseException;
 use think\App;
 use think\Response;
+use think\facade\View;
 
 trait Jump
 {
@@ -44,14 +45,15 @@ trait Jump
     }
 
     /**
-     * 操作成功跳转的快捷方法
-     * @access protected
-     * @param  mixed $msg 提示信息
-     * @param  string $url 跳转的URL地址
-     * @param  mixed $data 返回的数据
-     * @param  integer $wait 跳转等待时间
-     * @param  array $header 发送的Header信息
-     * @return void
+     * 操作成功跳转的快捷方法.
+     *
+     * @param mixed  $msg    提示信息
+     * @param string $url    跳转的 URL 地址
+     * @param mixed  $data   返回的数据
+     * @param int    $wait   跳转等待时间
+     * @param array  $header 发送的 Header 信息
+     *
+     * @throws \Exception
      */
     protected function success($msg = '', string $url = null, $data = '', int $wait = 3, array $header = [])
     {
@@ -70,13 +72,11 @@ trait Jump
         ];
 
         $type = $this->getResponseType();
-        // 把跳转模板的渲染下沉，这样在 response_send 行为里通过getData()获得的数据是一致性的格式
         if ('html' == strtolower($type)) {
-            $type = 'view';
-            $response = Response::create($this->app->config->get('jump.dispatch_success_tmpl'), $type)->assign($result)->header($header);
-        } else {
-            $response = Response::create($result, $type)->header($header);
+            $result = View::fetch($this->app->config->get('jump.dispatch_success_tmpl'), $result);
         }
+
+        $response = Response::create($result, $type)->header($header);
 
         throw new HttpResponseException($response);
     }
@@ -108,13 +108,11 @@ trait Jump
         ];
 
         $type = $this->getResponseType();
-
         if ('html' == strtolower($type)) {
-            $type = 'view';
-            $response = Response::create($this->app->config->get('jump.dispatch_error_tmpl'), $type)->assign($result)->header($header);
-        } else {
-            $response = Response::create($result, $type)->header($header);
+            $result = View::fetch($this->app->config->get('jump.dispatch_error_tmpl'), $result);
         }
+
+        $response = Response::create($result, $type)->header($header);
 
         throw new HttpResponseException($response);
     }
@@ -154,10 +152,8 @@ trait Jump
      */
     protected function redirect($url, $code = 302, $with = [])
     {
-        $response = Response::create($url, 'redirect');
-
+        $response = \redirect($url);
         $response->code($code)->with($with);
-
         throw new HttpResponseException($response);
     }
 
